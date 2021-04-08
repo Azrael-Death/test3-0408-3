@@ -1,0 +1,163 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  display: block;
+  font-weight: none;
+  -webkit-tap-highlight-color: transparent;
+}
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  touch-action: none;
+  position: relative;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+ul,
+ol {
+  list-style: none;
+}
+.header {
+  width: 100%;
+}
+.header .head {
+  height: 1.4rem;
+  background: #aa1a19;
+}
+.header .head h2 {
+  padding-top: 0.52rem;
+  font-size: 0.36rem;
+  text-align: center;
+  color: #fff;
+}
+.header .head button {
+  display: block;
+  width: 1.44rem;
+  height: 0.68rem;
+  border: none;
+  background: #c40c0c;
+  float: right;
+  border-radius: 0.2rem;
+  margin-top: -0.6rem;
+  margin-right: 0.3rem;
+  outline: none;
+}
+.header .head button .icon-icon {
+  font-size: 0.46rem;
+  color: #fff;
+}
+.header .list {
+  width: 130%;
+  height: 1rem;
+  background: #9a9fa5;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.header .list li {
+  position: relative;
+  font-size: 0.5rem;
+  z-index: 10;
+}
+.header .list li.active {
+  color: #fff;
+}
+.header .list li img {
+  position: absolute;
+  bottom: -0.25rem;
+  left: 0;
+  display: none;
+}
+.content {
+  width: 100%;
+  margin-top: 0.3rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 2.4rem;
+  bottom: 1.4rem;
+  overflow: hidden;
+}
+.content .contt .cont {
+  width: 100%;
+}
+.content .contt .cont .c_list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.content .contt .cont .c_list li {
+  width: 2.7rem;
+  height: 4rem;
+  margin: 0 auto;
+}
+.content .contt .cont .c_list li a {
+  width: 100%;
+  height: 2.8rem;
+  border: 1px solid #ccc;
+  padding: 0.05rem;
+}
+.content .contt .cont .c_list li a img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.content .contt .cont .c_list li h4 {
+  font-size: 0.3rem;
+  text-align: center;
+  margin: 0.1rem 0;
+  color: #ccc;
+}
+.content .contt .cont .c_list li p {
+  display: flex;
+  justify-content: space-between;
+}
+.content .contt .cont .c_list li p span {
+  font-size: 0.28rem;
+}
+.content .contt .cont .c_list li p span:nth-child(1) {
+  color: red;
+}
+.content .contt .cont .c_list li p span:nth-child(2) {
+  color: #ccc;
+}
+.footer {
+  width: 100%;
+  height: 1.44rem;
+  background: #000;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.footer .f_list {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 0.13rem;
+}
+.footer .f_list li {
+  width: 1.4rem;
+  height: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.footer .f_list li span {
+  display: block;
+  font-size: 0.6rem;
+  color: #fff;
+}
+.footer .f_list li p {
+  font-size: 0.32rem;
+  color: #fff;
+}

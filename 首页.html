@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <link rel="stylesheet" href="./css/index.css">
+   <link rel="stylesheet" href="./font/iconfont.css">
+   <script src="./js/rem1.js"></script>
+   <script src="./font/iconfont.js"></script>
+   <script src="./js/better-scroll.js"></script>
+   <script src="./zepto/src/zepto.js"></script>
+   <script src="./zepto/src/event.js"></script>
+   <script src="./zepto/src/touch.js"></script>
+   <script src="./zepto/src/ajax.js"></script>
+   <script src="./zepto/src/callbacks.js"></script>
+   <script src="./zepto/src/deferred.js"></script>
+   <script src="./zepto/src/fx.js"></script>
+   <script src="./zepto/src/fx_methods.js"></script>
+   <script src="./zepto/src/data.js"></script>
+   <script src="./zepto/src/detect.js"></script>
+   <script src="./zepto/src/selector.js"></script>
+</head>
+<body>
+   <header class="header">
+      <div class="head">
+         <h2>新品上市</h2>
+         <button><i class="iconfont icon-icon"></i></button>
+      </div>
+      <div class="wrap_list">
+         <ul class="list">
+         
+         </ul>
+      </div>
+      
+   </header>
+   <section class="content">
+      <div class="contt">
+
+      </div>
+      <!-- <div class="cont">
+         <ul class="c_list">
+            
+         </ul>
+      </div> -->
+   </section>
+   <footer class="footer">
+      <ul class="f_list">
+         <li>
+            <span class="iconfont icon-home"></span>
+            <p>首页</p>
+         </li>
+         <li>
+            <span class="iconfont icon-fenlei"></span>
+            <p>分类</p>
+         </li>
+         <li>
+            <span class="iconfont icon-gouwuche"></span>
+            <p>购物车</p>
+         </li>
+         <li>
+            <span class="iconfont icon-home-copy"></span>
+            <p>我的秀</p>
+         </li>
+         <li>
+            <span class="iconfont icon-gengduo"></span>
+            <p>更多</p>
+         </li>
+      </ul>
+   </footer>
+</body>
+<script>
+   $.ajax ({
+      url:"./json/nav.json",
+      type:"get",
+      success:function(data){
+         for(var i=0;i<data.length;i++){
+            $(".list").append("<li><img src='./images/s.png' alt=''/></li>");
+            $("li").eq(i).addClass("iconfont "+ data[i].classname);
+            $("li").eq(i).attr("data-id",data[i].classID);
+            $("li").eq(i).children("img").hide()
+            
+         }
+         $(".list li").eq(0).addClass("active");
+         $("li").eq(0).children("img").show()
+      }
+   })
+   $.ajax ({
+      url:"./json/product.json",
+      type:"get",
+      success:function(data1){
+        
+         
+         for(var i=0;i<data1.length;i++){
+            $("<div class='cont'><ul class='c_list'></ul></div>").appendTo($('.contt'));
+            $(".cont").eq(i).attr("data-id",data1[i].classID);
+           
+            // console.log(data1)
+            for(var j = 0;j<data1[i].productList.length;j++){  
+              
+               $(`<li>
+                  <a href=""><img src="${data1[i].productList[j].imgSrc}" alt=""></a> 
+                           <h4>${data1[i].productList[j].pname}</h4>
+                              <p>
+                                 <span>￥${data1[i].productList[j].nowPrice}</span>
+                                 <span>￥${data1[i].productList[j].oldPrice}</span>
+                              </p>
+                              </li>`).appendTo($('.c_list'))
+               $(".cont").hide();
+               $(".cont").eq(0).show()
+
+            }
+         }
+         var bs = BetterScroll.createBScroll($(".content")[0],{
+            scrollY: true,
+            // probeType: 3,
+            tap:"tap",
+            click: true,
+            pullUpLoad: true
+         })
+         bs.on('pullingUp', function() {
+            // 请求数据
+            for(var i=0;i<data1.length;i++){
+               $("<div class='cont'><ul class='c_list'></ul></div>").appendTo($('.contt'));
+               $(".cont").eq(i).attr("data-id",data1[i].classID);
+            
+            // console.log(data1)
+               for(var j = 0;j<data1[i].productList.length;j++){  
+               
+                  $(`<li>
+                     <a href=""><img src="${data1[i].productList[j].imgSrc}" alt=""></a> 
+                              <h4>${data1[i].productList[j].pname}</h4>
+                                 <p>
+                                    <span>￥${data1[i].productList[j].nowPrice}</span>
+                                    <span>￥${data1[i].productList[j].oldPrice}</span>
+                                 </p>
+                                 </li>`).appendTo($('.c_list'))
+                  $(".cont").hide();
+                  $(".cont").eq(0).show()
+
+               }
+            }
+            console.log('上拉');
+            // bs.refresh();
+           
+            bs.finishPullUp();
+         })
+      }
+   }) 
+   
+   var hd = $(".wrap_list").get(0)
+   var scroll = BetterScroll.createBScroll(hd,{
+      probeType: 3,
+      scrollX: true,
+      tap:"tap"
+   })
+   
+   $(document).on('tap','.list li',function(){
+
+      for(var i=0;i<$('.list li').length;i++){
+         $('.list li').eq(i).removeClass('active');
+         $('.list li').eq(i).children("img").hide()
+         $(".cont").eq(i).hide()
+      }
+      $(this).addClass('active')
+      $(this).children("img").show()
+      $(".cont").eq($(this).index()).show()
+   })
+   
+  
+</script>
+</html>
